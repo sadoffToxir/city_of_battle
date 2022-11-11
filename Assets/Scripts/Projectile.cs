@@ -24,18 +24,21 @@ public class Projectile : MonoBehaviour
     {
         _rb2d.velocity = Vector2.zero;
         _tilemap = collision.gameObject.GetComponent<Tilemap>();
+        if (collision.gameObject.GetComponent<Health>() != null)
+        {
+            collision.gameObject.GetComponent<Health>().TakeDamage();
+        }
         if ((collision.gameObject == _brickGameObject) || (destroySteel && collision.gameObject == _steelGameObject))
         {
             Vector3 hitPosition = Vector3.zero;
             foreach (ContactPoint2D hit in collision.contacts)
             {
-                hitPosition.x = hit.point.x - 0.5f * hit.normal.x;
-                hitPosition.y = hit.point.y - 0.5f * hit.normal.y;
+                hitPosition.x = hit.point.x - 0.01f * hit.normal.x;
+                hitPosition.y = hit.point.y - 0.01f * hit.normal.y;
                 _tilemap.SetTile(_tilemap.WorldToCell(hitPosition), null);
             }
-
-            this.gameObject.SetActive(false);
         }
+        this.gameObject.SetActive(false);
     }
 
     private void OnEnable()
