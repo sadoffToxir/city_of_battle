@@ -2,8 +2,10 @@ using UnityEngine;
 public class Player : Movement {
     private float _h, _v;
     Rigidbody2D _rb2d;
+    WeaponController _wc;
     void Start ()
     {
+        _wc = GetComponentInChildren<WeaponController>();
         _rb2d = GetComponent<Rigidbody2D>();
     }
     private void FixedUpdate()
@@ -14,5 +16,9 @@ public class Player : Movement {
     void Update () {
         _h = Input.GetAxisRaw("Horizontal");
         _v = Input.GetAxisRaw("Vertical");
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            _wc.Fire();
+        }
     }
 }

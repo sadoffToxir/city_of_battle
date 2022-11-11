@@ -1,69 +1,71 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class Projectile : MonoBehaviour
 {
-    public bool destroySteel;
-    [SerializeField] bool tobeDestroyed;
-    GameObject _brickGameObject, _steelGameObject;
-    Tilemap _tilemap;
+
+    public bool destroySteel = false;
+    bool toBeDestroyed = false;
+    GameObject brickGameObject, steelGameObject;
+    Tilemap tilemap;
     public int speed = 1;
-    Rigidbody2D _rb2d;
+    Rigidbody2D rb2d;
 
     void Start()
     {
-        _rb2d = GetComponent<Rigidbody2D>();
-        _rb2d.velocity = transform.up * speed;
-        _brickGameObject = GameObject.FindGameObjectWithTag("Brick");
-        _steelGameObject = GameObject.FindGameObjectWithTag("Steel");
+        rb2d = GetComponent<Rigidbody2D>();
+        rb2d.velocity = transform.up * speed;
+        brickGameObject = GameObject.FindGameObjectWithTag("Brick");
+        steelGameObject = GameObject.FindGameObjectWithTag("Steel");
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnEnable()
     {
-        _rb2d.velocity = Vector2.zero;
-        _tilemap = collision.gameObject.GetComponent<Tilemap>();
+        if (rb2d != null)
+        {
+            rb2d.velocity = transform.up * speed;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        rb2d.velocity = Vector2.zero;
+        tilemap = collision.gameObject.GetComponent<Tilemap>();
         if (collision.gameObject.GetComponent<Health>() != null)
         {
             collision.gameObject.GetComponent<Health>().TakeDamage();
         }
-        if ((collision.gameObject == _brickGameObject) || (destroySteel && collision.gameObject == _steelGameObject))
+        if ((collision.gameObject == brickGameObject) || (destroySteel && collision.gameObject == steelGameObject))
         {
             Vector3 hitPosition = Vector3.zero;
             foreach (ContactPoint2D hit in collision.contacts)
             {
-                hitPosition.x = hit.point.x - 0.01f * hit.normal.x;
-                hitPosition.y = hit.point.y - 0.01f * hit.normal.y;
-                _tilemap.SetTile(_tilemap.WorldToCell(hitPosition), null);
+                hitPosition.x = hit.point.x - 0.05f * hit.normal.x;
+                hitPosition.y = hit.point.y - 0.05f * hit.normal.y;
+                tilemap.SetTile(tilemap.WorldToCell(hitPosition), null);
             }
         }
+        //keep the projectile inactive if hit anything. this will allow the projectile to be reused instead of wasting resource for garbage collector to clear it from memory
         this.gameObject.SetActive(false);
     }
-
-    private void OnEnable()
+    void OnDisable()
     {
-        if (_rb2d != null)
-        {
-            _rb2d.velocity = transform.up * speed;
-        }
-    }
-
-    private void OnDisable()
-    {
-        if (tobeDestroyed)
+        if (toBeDestroyed)
         {
             Destroy(this.gameObject);
         }
     }
 
+    //function called from Tank to destroy the projectile when the tank is destroyed
     public void DestroyProjectile()
     {
+        //if the projectile is already inactive, destroy the projectile gameobject
         if (gameObject.activeSelf == false)
         {
             Destroy(this.gameObject);
         }
-
-        tobeDestroyed = true;
+        //set flag toBeDestroyed so that if projectile is still active checking the flag toBeDestroyed during onDisable to destroy the projectile
+        toBeDestroyed = true;
     }
+
 }

@@ -15,10 +15,10 @@ TagManager:
   - UI
   - Boundary
   - Water
-  - 
-  - 
-  - 
-  - 
+  - PlayerProjectile
+  - PlayerTank
+  - EnemyProjectile
+  - EnemyTank
   - 
   - 
   - 

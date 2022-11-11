@@ -3,71 +3,75 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAI : Movement {
-    Rigidbody2D _rb2d;
-    float _h, _v;
+    Rigidbody2D rb2d;
+    float h, v;
     [SerializeField]
     LayerMask blockingLayer;
+    WeaponController wc;
     enum Direction { Up, Down, Left, Right };
-    
     void Start()
     {
-        _rb2d = GetComponent<Rigidbody2D>();
+        rb2d = GetComponent<Rigidbody2D>();
         RandomDirection();
+        wc = GetComponentInChildren<WeaponController>();
+        Invoke("FireWhenWanted", Random.Range(1f, 5f));
     }
-
-public void RandomDirection()
+    public void RandomDirection()
     {
-        CancelInvoke(nameof(RandomDirection));
-        
+        CancelInvoke("RandomDirection");
         List<Direction> lottery = new List<Direction>();
-        if (!Physics2D.Linecast(transform.position, (Vector2)transform.position + new Vector2(1, 0), blockingLayer))
+        if (!Physics2D.Linecast(transform.position, (Vector2)transform.position + new Vector2(0, 1), blockingLayer))
         {
             lottery.Add(Direction.Right);
         }
-        if (!Physics2D.Linecast(transform.position, (Vector2)transform.position + new Vector2(-1, 0), blockingLayer))
+        if (!Physics2D.Linecast(transform.position, (Vector2)transform.position + new Vector2(0, -1), blockingLayer))
         {
             lottery.Add(Direction.Left);
         }
-        if (!Physics2D.Linecast(transform.position, (Vector2)transform.position + new Vector2(0, 1), blockingLayer))
+        if (!Physics2D.Linecast(transform.position, (Vector2)transform.position + new Vector2(1, 0), blockingLayer))
         {
             lottery.Add(Direction.Up);
         }
-        if (!Physics2D.Linecast(transform.position, (Vector2)transform.position + new Vector2(0, -1), blockingLayer))
+        if (!Physics2D.Linecast(transform.position, (Vector2)transform.position + new Vector2(-1, 0), blockingLayer))
         {
             lottery.Add(Direction.Down);
         }
-        
         Direction selection = lottery[Random.Range(0, lottery.Count)];
         if (selection == Direction.Up)
         {
-            _v = 1;
-            _h = 0;
+            v = 1;
+            h = 0;
         }
         if (selection == Direction.Down)
         {
-            _v = -1;
-            _h = 0;
+            v = -1;
+            h = 0;
         }
         if (selection == Direction.Right)
         {
-            _v = 0;
-            _h = 1;
+            v = 0;
+            h = 1;
         }
         if (selection == Direction.Left)
         {
-            _v = 0;
-            _h = -1;
+            v = 0;
+            h = -1;
         }
-        Invoke(nameof(RandomDirection), Random.Range(3, 6));
+        Invoke("RandomDirection", Random.Range(3, 6));
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    void FireWhenWanted()
+    {
+        print("FireWhenWanted");
+        wc.Fire();
+        Invoke("FireWhenWanted", Random.Range(1f, 5f));
+    }
+    void OnCollisionEnter2D(Collision2D collision)
     {
         RandomDirection();
     }
-
-    private void FixedUpdate()
+    void FixedUpdate()
     {
-        if (_v != 0 && isMoving == false) StartCoroutine(MoveVertical(_v, _rb2d));
-        else if (_h != 0 && isMoving == false) StartCoroutine(MoveHorizontal(_h, _rb2d));
+        if (v != 0 && isMoving == false) StartCoroutine(MoveVertical(v, rb2d));
+        else if (h != 0 && isMoving == false) StartCoroutine(MoveHorizontal(h, rb2d));
     }
 }
