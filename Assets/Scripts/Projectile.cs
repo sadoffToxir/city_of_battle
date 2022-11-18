@@ -40,8 +40,8 @@ public class Projectile : MonoBehaviour
             Vector3 hitPosition = Vector3.zero;
             foreach (ContactPoint2D hit in collision.contacts)
             {
-                hitPosition.x = hit.point.x - 0.05f * hit.normal.x;
-                hitPosition.y = hit.point.y - 0.05f * hit.normal.y;
+                hitPosition.x = hit.point.x - 0.5f * hit.normal.x;
+                hitPosition.y = hit.point.y - 0.5f * hit.normal.y;
                 tilemap.SetTile(tilemap.WorldToCell(hitPosition), null);
             }
         }

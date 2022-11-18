@@ -3,27 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GamePlayManager : MonoBehaviour {
+public class GamePlayManager : MonoBehaviour
+{
     [SerializeField]
     Image topCurtain, bottomCurtain, blackCurtain;
     [SerializeField]
     Text stageNumberText, gameOverText;
-    // Use this for initialization
-    void Start () {
+    GameObject[] spawnPoints, spawnPlayerPoints;
+    void Start()
+    {
+        spawnPoints = GameObject.FindGameObjectsWithTag("EnemySpawnPoint");
+        spawnPlayerPoints = GameObject.FindGameObjectsWithTag("PlayerSpawnPoint");
         StartCoroutine(StartStage());
+    }
+    public void SpawnEnemy()
+    {
+        if (LevelManager.smallTanks + LevelManager.fastTanks + LevelManager.bigTanks + LevelManager.armoredTanks > 0)
+        {
+            int spawnPointIndex = Random.Range(0, spawnPoints.Length);
+            Animator anime = spawnPoints[spawnPointIndex].GetComponent<Animator>();
+            anime.SetTrigger("Spawning");
+            Debug.Log("Spawn");
+        }
     }
     IEnumerator StartStage()
     {
-        StartCoroutine(RevealStageNumber()); 
-        yield return new WaitForSeconds(5); // таймер паузы анимации
+        StartCoroutine(RevealStageNumber());
+        yield return new WaitForSeconds(3); // таймер паузы анимации
         StartCoroutine(RevealTopStage());
         StartCoroutine(RevealBottomStage());
+        yield return null;
+        SpawnEnemy();
     }
-	IEnumerator RevealStageNumber()
+    IEnumerator RevealStageNumber()
     {
         while (blackCurtain.rectTransform.localScale.y > 0)
         {
-            blackCurtain.rectTransform.localScale = new Vector3(1, Mathf.Clamp(blackCurtain.rectTransform.localScale.y - Time.deltaTime,0,1), 1);
+            blackCurtain.rectTransform.localScale = new Vector3(1, Mathf.Clamp(blackCurtain.rectTransform.localScale.y - Time.deltaTime, 0, 1), 1);
             yield return null;
         }
     }
@@ -46,10 +62,10 @@ public class GamePlayManager : MonoBehaviour {
     }
     public IEnumerator GameOver()
     {
-    while (gameOverText.rectTransform.localPosition.y < 0)
+        while (gameOverText.rectTransform.localPosition.y < 0)
         {
-        gameOverText.rectTransform.localPosition = new Vector3(gameOverText.rectTransform.localPosition.x, gameOverText.rectTransform.localPosition.y + 120f * Time.deltaTime, gameOverText.rectTransform.localPosition.z);
-        yield return null;
+            gameOverText.rectTransform.localPosition = new Vector3(gameOverText.rectTransform.localPosition.x, gameOverText.rectTransform.localPosition.y + 120f * Time.deltaTime, gameOverText.rectTransform.localPosition.z);
+            yield return null;
         }
     }
 }
