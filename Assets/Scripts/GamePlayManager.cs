@@ -10,20 +10,52 @@ public class GamePlayManager : MonoBehaviour
     [SerializeField]
     Text stageNumberText, gameOverText;
     GameObject[] spawnPoints, spawnPlayerPoints;
+    bool stageStart = false;
+    bool tankReserveEmpty = false;
+    private static readonly int Spawning = Animator.StringToHash("Spawning");
+
     void Start()
     {
+        stageStart = true;
+        stageNumberText.text = "STAGE " + MasterTracker.stageNumber;
         spawnPoints = GameObject.FindGameObjectsWithTag("EnemySpawnPoint");
         spawnPlayerPoints = GameObject.FindGameObjectsWithTag("PlayerSpawnPoint");
         StartCoroutine(StartStage());
     }
+
+    public void SpawnPlayer()
+    {
+        if (MasterTracker.playerLives > 0)
+        {
+            if (!stageStart)
+            {
+                MasterTracker.playerLives--;
+            }
+            stageStart = false;
+            Animator anime = spawnPlayerPoints[0].GetComponent<Animator>();
+            anime.SetTrigger(Spawning);
+        }
+        else
+        {
+            StartCoroutine(GameOver());
+        }
+        
+    }
+
+    // ReSharper disable Unity.PerformanceAnalysis
     public void SpawnEnemy()
     {
         if (LevelManager.smallTanks + LevelManager.fastTanks + LevelManager.bigTanks + LevelManager.armoredTanks > 0)
         {
             int spawnPointIndex = Random.Range(0, spawnPoints.Length);
             Animator anime = spawnPoints[spawnPointIndex].GetComponent<Animator>();
-            anime.SetTrigger("Spawning");
-            Debug.Log("Spawn");
+            anime.SetTrigger(Spawning);
+        }
+        else
+        {
+            CancelInvoke();
+            tankReserveEmpty = true;
+
         }
     }
     IEnumerator StartStage()
