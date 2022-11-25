@@ -10,6 +10,7 @@ TagManager:
   - EnemySpawnPoint
   - PlayerProjectile
   - EnemyProjectile
+  - Small
   layers:
   - Default
   - TransparentFX
