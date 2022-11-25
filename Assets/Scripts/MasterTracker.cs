@@ -9,6 +9,8 @@ public class MasterTracker : MonoBehaviour
 
     [SerializeField] int smallTankPoints = 100, fastTankPoints = 200, bigTankPoints = 300, armoredTankPoints = 400;
 
+    public static bool stageCleared = false;
+
     public int SmallTankPointsWorth => smallTankPoints;
 
     public int FastTankPointsWorth => fastTankPoints;

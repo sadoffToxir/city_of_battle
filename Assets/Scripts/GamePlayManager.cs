@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GamePlayManager : MonoBehaviour
 {
@@ -96,8 +97,37 @@ public class GamePlayManager : MonoBehaviour
     {
         while (gameOverText.rectTransform.localPosition.y < 0)
         {
-            gameOverText.rectTransform.localPosition = new Vector3(gameOverText.rectTransform.localPosition.x, gameOverText.rectTransform.localPosition.y + 120f * Time.deltaTime, gameOverText.rectTransform.localPosition.z);
+            gameOverText.rectTransform.localPosition = new Vector3(
+                gameOverText.rectTransform.localPosition.x,
+                gameOverText.rectTransform.localPosition.y + 120f * Time.deltaTime,
+                gameOverText.rectTransform.localPosition.z);
             yield return null;
         }
+        MasterTracker.stageCleared = false;
+        LevelCompleted();
+    }
+    private void Update()
+    {
+        if (tankReserveEmpty && GameObject.FindWithTag("Small") == null && GameObject.FindWithTag("Fast") == null && GameObject.FindWithTag("Big") == null && GameObject.FindWithTag("Armored") == null)
+        {
+    	MasterTracker.stageCleared = true;
+        LevelCompleted();
+        }
+    }
+    private void LevelCompleted()
+    {   
+    tankReserveEmpty = false;
+    SceneManager.LoadScene("Score");
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("EnemyProjectile") || collision.gameObject.CompareTag("PlayerProjectile"))
+        {
+        GetComponent<SpriteRenderer>().enabled = false;
+        transform.GetChild(0).gameObject.SetActive(true);
+        GamePlayManager GPM = GameObject.Find("Canvas").GetComponent<GamePlayManager>();
+        StartCoroutine(GPM.GameOver());
+        }
+
     }
 }
