@@ -105,7 +105,6 @@ public class GamePlayManager : MonoBehaviour
         }
         MasterTracker.stageCleared = false;
         LevelCompleted();
-        Time.timeScale = 0;
     }
     private void Update()
     {
