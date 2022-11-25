@@ -17,5 +17,3 @@ H
 Assets/Scripts/Health.cs,d\2\d23b75f5228ce5bb0e36a706d39a64933c3d0928
 I
 Assets/Scripts/Spawner.cs,5\c\5c59bbb0b67e7c640bd2aa70d52a14ecb4a09509
-Q
-!Assets/Scripts/GamePlayManager.cs,6\0\608cfe036b0e000a40c52cc233c16feb6e553ab0

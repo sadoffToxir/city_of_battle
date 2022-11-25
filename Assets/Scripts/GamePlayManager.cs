@@ -105,6 +105,7 @@ public class GamePlayManager : MonoBehaviour
         }
         MasterTracker.stageCleared = false;
         LevelCompleted();
+        Time.timeScale = 0;
     }
     private void Update()
     {
@@ -114,11 +115,13 @@ public class GamePlayManager : MonoBehaviour
         LevelCompleted();
         }
     }
+
     private void LevelCompleted()
-    {   
-    tankReserveEmpty = false;
-    SceneManager.LoadScene("Score");
+    {
+        tankReserveEmpty = false;
+        SceneManager.LoadScene("Score");
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("EnemyProjectile") || collision.gameObject.CompareTag("PlayerProjectile"))
@@ -128,6 +131,5 @@ public class GamePlayManager : MonoBehaviour
         GamePlayManager GPM = GameObject.Find("Canvas").GetComponent<GamePlayManager>();
         StartCoroutine(GPM.GameOver());
         }
-
     }
 }

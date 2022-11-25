@@ -11,7 +11,6 @@ public class Eagle : MonoBehaviour
         {
             eagleDeath = true;
             GetComponent<SpriteRenderer>().enabled = false;
-            transform.GetChild(0).gameObject.SetActive(true);
             GamePlayManager GPM = GameObject.Find("Canvas").GetComponent<GamePlayManager>();
             StartCoroutine(GPM.GameOver());
         }
