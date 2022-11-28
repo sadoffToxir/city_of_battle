@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Brick
   - Steel
+  - PlayerSpawnPoint
+  - EnemySpawnPoint
+  - PlayerProjectile
+  - EnemyProjectile
+  - Small
   layers:
   - Default
   - TransparentFX

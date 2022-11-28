@@ -9,6 +9,8 @@ public class MasterTracker : MonoBehaviour
 
     [SerializeField] int smallTankPoints = 100, fastTankPoints = 200, bigTankPoints = 300, armoredTankPoints = 400;
 
+    public static bool stageCleared = false;
+
     public int SmallTankPointsWorth => smallTankPoints;
 
     public int FastTankPointsWorth => fastTankPoints;
@@ -19,7 +21,7 @@ public class MasterTracker : MonoBehaviour
 
     public static int smallTankDestroyed, fastTankDestroyed, bigTankDestroyed, armoredTankDestroyed;
     public static int stageNumber;
-    public static int playerScore = 0;
+    public static int playerScore = 0, playerLives = 3;
 
     void Awake()
     {

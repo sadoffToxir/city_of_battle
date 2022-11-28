@@ -34,18 +34,16 @@ public class Health : MonoBehaviour
 
     void Death()
     {
+        GamePlayManager GPM = GameObject.Find("Canvas").GetComponent<GamePlayManager>(); //newly added
         if (gameObject.CompareTag("Player"))
         {
-            //Spawn Player
+            GPM.SpawnPlayer(); //Spawn Player
+        }else{
+            if (gameObject.CompareTag("Small")) MasterTracker.smallTankDestroyed++;
+            else if (gameObject.CompareTag("Fast")) MasterTracker.fastTankDestroyed++;
+            else if (gameObject.CompareTag("Big")) MasterTracker.bigTankDestroyed++;
+            else if (gameObject.CompareTag("Armored")) MasterTracker.armoredTankDestroyed++;
         }
-        else
-        {
-            if (gameObject.CompareTag($"Small")) MasterTracker.smallTankDestroyed++;
-            else if (gameObject.CompareTag($"Fast")) MasterTracker.fastTankDestroyed++;
-            else if (gameObject.CompareTag($"Big")) MasterTracker.bigTankDestroyed++;
-            else if (gameObject.CompareTag($"Armored")) MasterTracker.armoredTankDestroyed++;
-        }
-
         Destroy(gameObject);
     }
 }

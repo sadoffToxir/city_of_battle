@@ -1,0 +1,12 @@
+
+Tcsharpsquid:S3903"+Move 'LevelManager' into a named namespace.(×Ï›şÿÿÿÿ8úÔßŠÊ0
+mcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(ıçĞÒüÿÿÿÿ8ıÔßŠÊ0
+pcsharpsquid:S2223"GChange the visibility of 'smallTanks' or make it 'const' or 'readonly'.(ıçĞÒüÿÿÿÿ8ÿÔßŠÊ0
+ocsharpsquid:S2223"FChange the visibility of 'fastTanks' or make it 'const' or 'readonly'.(ıçĞÒüÿÿÿÿ8ÕßŠÊ0
+ncsharpsquid:S2223"EChange the visibility of 'bigTanks' or make it 'const' or 'readonly'.(ıçĞÒüÿÿÿÿ8‚ÕßŠÊ0
+rcsharpsquid:S2223"IChange the visibility of 'armoredTanks' or make it 'const' or 'readonly'.(ıçĞÒüÿÿÿÿ8„ÕßŠÊ0
+ycsharpsquid:S2696"UMake the enclosing instance method 'static' or remove this set on the 'static' field.(¼àó8†ÕßŠÊ0
+~csharpsquid:S2696"UMake the enclosing instance method 'static' or remove this set on the 'static' field.(õ€Üıÿÿÿÿ8‰ÕßŠÊ0
+~csharpsquid:S2696"UMake the enclosing instance method 'static' or remove this set on the 'static' field.(¡·ëùÿÿÿÿ8ÕßŠÊ0
+~csharpsquid:S2696"UMake the enclosing instance method 'static' or remove this set on the 'static' field.(Éİ×Œùÿÿÿÿ8ÕßŠÊ0
+ycsharpsquid:S2696"UMake the enclosing instance method 'static' or remove this set on the 'static' field.(¶É–Ê8ÕßŠÊ0
