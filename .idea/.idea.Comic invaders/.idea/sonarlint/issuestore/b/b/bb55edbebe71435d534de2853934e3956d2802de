@@ -1,0 +1,13 @@
+
+Ucsharpsquid:S3903",Move 'MasterTracker' into a named namespace.(ÇÄëûÿÿÿÿ8ãøßŠÊ0
+gcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(ßõ¢a8äøßŠÊ0
+hcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(¶¹½Š8äøßŠÊ0
+hcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(ŒæŸ±8åøßŠÊ0
+rcsharpsquid:S2223"OChange the visibility of 'smallTankDestroyed' or make it 'const' or 'readonly'.(ßõ¢a8åøßŠÊ0
+qcsharpsquid:S2223"NChange the visibility of 'fastTankDestroyed' or make it 'const' or 'readonly'.(ßõ¢a8æøßŠÊ0
+pcsharpsquid:S2223"MChange the visibility of 'bigTankDestroyed' or make it 'const' or 'readonly'.(ßõ¢a8æøßŠÊ0
+tcsharpsquid:S2223"QChange the visibility of 'armoredTankDestroyed' or make it 'const' or 'readonly'.(ßõ¢a8çøßŠÊ0
+lcsharpsquid:S2223"HChange the visibility of 'stageNumber' or make it 'const' or 'readonly'.(¶¹½Š8çøßŠÊ0
+lcsharpsquid:S2223"HChange the visibility of 'playerScore' or make it 'const' or 'readonly'.(ŒæŸ±8èøßŠÊ0
+lcsharpsquid:S2223"HChange the visibility of 'playerLives' or make it 'const' or 'readonly'.(ŒæŸ±8êøßŠÊ0
+~csharpsquid:S2696"UMake the enclosing instance method 'static' or remove this set on the 'static' field.(éÏøùÿÿÿÿ8êøßŠÊ0
