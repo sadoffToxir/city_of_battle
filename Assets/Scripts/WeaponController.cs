@@ -11,12 +11,14 @@ public class WeaponController : MonoBehaviour
     Projectile canon;
     [SerializeField]
     int speed;
+    AudioSource _audioSource;
 
     void Start()
     {
         canonBall = Instantiate(projectile, transform.position, transform.rotation) as GameObject;
         canon = canonBall.GetComponent<Projectile>();
         canon.speed = speed;
+        _audioSource = GetComponent<AudioSource>();
     }
 
     public void Fire()
@@ -32,8 +34,10 @@ public class WeaponController : MonoBehaviour
 
     IEnumerator ShowFire()
     {
+        _audioSource.UnPause();
         fire.SetActive(true);
         yield return new WaitForSeconds(0.3f);
+        _audioSource.Pause();
         fire.SetActive(false);
     }
 
