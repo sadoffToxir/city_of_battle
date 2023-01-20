@@ -1,7 +1,0 @@
-
-Gcsharpsquid:S1125"*Remove the unnecessary Boolean literal(s).(½¬ò×
-Lcsharpsquid:S3903"/Move 'WeaponController' into a named namespace.(šÃÒİ
-Scsharpsquid:S3459
-"1Remove unassigned field 'fire', or set its value.(û›ûÂùÿÿÿÿ
-Ocsharpsquid:S1905"-Remove this unnecessary cast to 'GameObject'.(Ÿ‘ö¸úÿÿÿÿ
-;csharpsquid:S125"Remove this commented out code.(ÁàÕ‰
