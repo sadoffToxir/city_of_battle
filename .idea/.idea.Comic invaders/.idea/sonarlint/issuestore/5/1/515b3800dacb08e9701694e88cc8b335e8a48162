@@ -1,7 +1,0 @@
-
-Gcsharpsquid:S1125?"*Remove the unnecessary Boolean literal(s).(”´Ÿæ
-Kcsharpsquid:S3903")Move 'Projectile' into a named namespace.(ÉÄÂøÿÿÿÿ
-acsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(µİîû
-fcsharpsquid:S1104"DMake this field 'private' and encapsulate it in a 'public' property.(¢²ıëøÿÿÿÿ
-scsharpsquid:S1450
-"VRemove the field 'tilemap' and declare it as a local variable in the relevant methods.(§ö½ş

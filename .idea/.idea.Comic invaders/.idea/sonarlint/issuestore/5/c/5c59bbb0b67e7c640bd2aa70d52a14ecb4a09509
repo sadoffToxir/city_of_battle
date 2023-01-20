@@ -1,8 +1,0 @@
-
-Jcsharpsquid:S3903"&Move 'Spawner' into a named namespace.(â¼ë‰8Æ³ÒŠÊ0
-ˆcsharpsquid:S2342"_Rename this enumeration to match the regular expression: '^([A-Z]{1,3}[a-z0-9]+)*([A-Z]{2})?$'.(¾¡ã©ùÿÿÿÿ8€›ÜŠÊ0
-ycsharpsquid:S2696)"UMake the enclosing instance method 'static' or remove this set on the 'static' field.(Å¨ÅÂ8ÆÚÜŠÊ0
-xcsharpsquid:S2696*"UMake the enclosing instance method 'static' or remove this set on the 'static' field.(··æ<8ÇÚÜŠÊ0
-~csharpsquid:S2696+"UMake the enclosing instance method 'static' or remove this set on the 'static' field.(ø¤¤÷þÿÿÿÿ8ÇÚÜŠÊ0
-ycsharpsquid:S2696,"UMake the enclosing instance method 'static' or remove this set on the 'static' field.(Öºˆ²8ÇÚÜŠÊ0
-dcsharpsquid:S4158"";Remove this call, the collection is known to be empty here.(íÍÒ©øÿÿÿÿ8ÇÚÜŠÊ0
